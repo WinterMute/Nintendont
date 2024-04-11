@@ -41,18 +41,12 @@ A Wii Homebrew Project to play GC Games on Wii and vWii on Wii U
 4. Select Nintendont.
 
 ### Compiling:
-For compile Nintendont yourself, get the following versions of the toolchain compiling PPC tools:
-* **devkitARM r53-1**
-* **devkitPPC r35-2**
-* **libOGC 1.8.23-1**
 
-These versions can be downloaded here: https://www.mediafire.com/folder/j0juqb5vvd6z5/devkitPro_archives
+Follow instructions from devkitPro to install devkitPPC and devkitARM https://devkitpro.org/wiki/Getting_Started. You'll also need
+ppc-freetype which can be installed using devkitPro pacman 
 
-On Windows, run the "Build.bat" batch script for build Nintendont.
-
-On Unix, run the "Build.sh" script.
-
-Please use these specific versions for compiling Nintendont, **because if you try to compile them on latest dkARM/dkPPC/libOGC, you'll get a lot of compiler warnings and your build will crash when attemping to return to Nintendont menu**, so be warned about that.
+Compile bin2h using your host gcc - gcc kernel/bin2h/main.c -O2 -static -o kernel/bin2h/bin2h
+Using a terminal (msys2 shell on windows) run make.
 
 ### Notes
 * The Wii and Wii U SD card slot is known to be slow. If you're using an SD card and are having performance issues, consider either using a USB SD reader or a USB hard drive.
