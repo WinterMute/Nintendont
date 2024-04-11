@@ -19,7 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <time.h>
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
+
 int main (int argc, char **argv)
 {
 	if(argc < 2 || strrchr(argv[1], '.') == NULL || strcmp(".bin", strrchr(argv[1], '.')) != 0)
@@ -61,7 +62,7 @@ int main (int argc, char **argv)
 	fprintf(f,"\tFilename    : %s\n", strchr(argv[1], '/') != NULL ? strrchr(argv[1], '/')+1 : argv[1]);
 	fprintf(f,"\tDate created: %s", asctime(loctime));
 	fputs("*/\n\n",f);
-	fprintf(f,"#define %s_size 0x%x\n\n",basename,fsize);
+	fprintf(f,"#define %s_size 0x%zx\n\n",basename,fsize);
 	fprintf(f,"const unsigned char %s[] = {",basename);
 	free(basename);
 
