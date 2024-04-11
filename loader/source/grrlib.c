@@ -629,7 +629,7 @@ GRRLIB_texImg*  GRRLIB_LoadTexturePNG (const u8 *my_png) {
 	if(my_texture != NULL) {
 		ctx = PNGU_SelectImageFromBuffer(my_png);
 		PNGU_GetImageProperties(ctx, &imgProp);
-		my_texture->data = PNGU_DecodeTo4x4RGBA8(ctx, imgProp.imgWidth, imgProp.imgHeight, &width, &height, NULL);
+		my_texture->data = PNGU_DecodeTo4x4RGBA8(ctx, imgProp.imgWidth, imgProp.imgHeight, &width, &height);
 		if(my_texture->data != NULL) {
 			my_texture->w = width;
 			my_texture->h = height;

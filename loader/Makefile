@@ -28,7 +28,7 @@ INCLUDES	:= include ../fatfs
 #---------------------------------------------------------------------------------
 
 ASFLAGS := $(MACHDEP) -mregnames -D_LANGUAGE_ASSEMBLY
-CFLAGS	:= -O3 -g -std=gnu89 -Wno-format-truncation \
+CFLAGS	:= -O3 -g -Wno-format-truncation `freetype-config --cflags` \
 	   -Wall $(MACHDEP) $(INCLUDE) -DDEBUG -DDEBUG_MODULE_PATCH -DARCH_IS_BIG_ENDIAN
 CXXFLAGS := $(CFLAGS)
 
@@ -38,14 +38,14 @@ LDFLAGS	= -g $(MACHDEP) -Wl,-Map,$(notdir $@).map,-wrap,wiiuse_register
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lfreetype -lpngu -lpng -lz \
-	   -lwiiuse -lwiidrc -lwupc -lbte -lfatfs-ppc -logc -ldi -lm
+LIBS	:= -lfreetype -lpng -lz -lbz2 \
+	   -lwiiuse -lbte -lfatfs-ppc -logc -ldi -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	= $(CURDIR)/extlibs
+LIBDIRS	= $(PORTLIBS)
 # NOTE: FatFS doesn't use the standard [component]/lib structure,
 # so we'll add a -L ourselves.
 LDFLAGS	+= -L$(CURDIR)/../../fatfs
